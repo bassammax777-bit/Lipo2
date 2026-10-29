@@ -1,0 +1,886 @@
+import { Question, CategoryId } from '../types/quiz';
+
+export interface CategoryInfo {
+  id: CategoryId;
+  titleAr: string;
+  titleEn: string;
+  descriptionAr: string;
+  icon: string;
+  color: string;
+}
+
+export const CATEGORIES: CategoryInfo[] = [
+  {
+    id: 'all',
+    titleAr: 'جميع المواضيع (امتحان شامل)',
+    titleEn: 'Comprehensive Exam (All Topics)',
+    descriptionAr: 'اختبار شامل يغطي كامل منهج كيمياء الدهون وأمراضها',
+    icon: 'GraduationCap',
+    color: 'from-blue-600 to-indigo-600',
+  },
+  {
+    id: 'digestion_absorption',
+    titleAr: 'هضم وامتصاص الدهون',
+    titleEn: 'Lipid Digestion & Absorption',
+    descriptionAr: 'الإنزيمات الهاضمة، المذيلات (Micelles)، وسوء الامتصاص (Steatorrhoea)',
+    icon: 'Apple',
+    color: 'from-amber-500 to-orange-600',
+  },
+  {
+    id: 'fa_oxidation',
+    titleAr: 'أكسدة الأحماض الدهنية ومكوك الكارنيتين',
+    titleEn: 'Fatty Acid Oxidation & Carnitine',
+    descriptionAr: 'أكسدة بيتا، حساب طاقة ATP، أكسدة ألفا وأوميغا، ومرض ريفسوم',
+    icon: 'Flame',
+    color: 'from-rose-500 to-red-600',
+  },
+  {
+    id: 'fa_synthesis',
+    titleAr: 'تصنيع الأحماض الدهنية',
+    titleEn: 'Fatty Acid Synthesis (De Novo)',
+    descriptionAr: 'معقد إنزيم سينثاز، استطالة السلسلة، ومصادر الـ NADPH',
+    icon: 'Dna',
+    color: 'from-emerald-500 to-teal-600',
+  },
+  {
+    id: 'lipogenesis_lipolysis',
+    titleAr: 'تخليق وتكسير الدهون المخزنة والنسيج الدهني',
+    titleEn: 'Lipogenesis & Lipolysis',
+    descriptionAr: 'الليباز الحساس للهرمونات، الجليسروكاينيز، والنسيج الدهني البني',
+    icon: 'Activity',
+    color: 'from-yellow-500 to-amber-600',
+  },
+  {
+    id: 'ketone_bodies',
+    titleAr: 'الأجسام الكيتونية والحماض الكيتوني',
+    titleEn: 'Ketone Bodies & Ketosis',
+    descriptionAr: 'تخليق وأكسدة الكيتونات، إنزيم ثيوفوريز، وغيبوبة السكر الكيتونية',
+    icon: 'Zap',
+    color: 'from-purple-500 to-violet-600',
+  },
+  {
+    id: 'cholesterol_fatty_liver',
+    titleAr: 'أيض الكوليسترول وأمراض الكبد الدهني',
+    titleEn: 'Cholesterol & Fatty Liver',
+    descriptionAr: 'تخليق الكوليسترول، أدوية الستاتين، والأملاح الصفراوية والعوامل الشحمية',
+    icon: 'ShieldAlert',
+    color: 'from-cyan-500 to-blue-600',
+  },
+  {
+    id: 'lipoproteins_atherosclerosis',
+    titleAr: 'البروتينات الدهنية وتصلب الشرايين',
+    titleEn: 'Lipoproteins & Atherosclerosis',
+    descriptionAr: 'الكيلوميكرونات، VLDL، LDL، HDL، وخلايا الرغوة (Foam Cells)',
+    icon: 'HeartPulse',
+    color: 'from-pink-500 to-rose-600',
+  },
+  {
+    id: 'eicosanoids_phospholipids',
+    titleAr: 'الإيكوسانويدات والدهون الفوسفاتية والليبيدوسيز',
+    titleEn: 'Eicosanoids, Phospholipids & Lipidosis',
+    descriptionAr: 'البروستاغلاندينات، الليكوترينات، نيمان بيك، ومرض غوشيه',
+    icon: 'Layers',
+    color: 'from-indigo-500 to-purple-600',
+  },
+];
+
+export const QUESTIONS_BANK: Question[] = [
+  // --- DIGESTION & ABSORPTION ---
+  {
+    id: 'da_1',
+    categoryId: 'digestion_absorption',
+    categoryTitleAr: 'هضم وامتصاص الدهون',
+    categoryTitleEn: 'Lipid Digestion & Absorption',
+    difficulty: 'medium',
+    questionAr: 'ما هو الناتج الأساسي (72%) لهضم ثلاثي الجليسريد بواسطة إنزيم الليباز البنكرياسي؟',
+    questionEn: 'What is the primary end-product (72%) of triacylglycerol digestion by pancreatic lipase?',
+    optionsAr: [
+      '2-أحادي أسيل الجلسرول (2-Monoacylglycerol) مع أحماض دهنية حرة',
+      'جليسرول حر وثلاثة أحماض دهنية حرة',
+      '1-أحادي أسيل الجلسرول فقط',
+      'ثنائي أسيل الجلسرول (Diacylglycerol)'
+    ],
+    optionsEn: [
+      '2-Monoacylglycerol + free fatty acids',
+      'Free glycerol + 3 free fatty acids',
+      '1-Monoacylglycerol only',
+      'Diacylglycerol'
+    ],
+    correctIndex: 0,
+    explanationAr: 'يقوم إنزيم الليباز البنكرياسي (Pancreatic Lipase) بكسر الروابط الإسترية الأولية في الموضعين 1 و 3 من ثلاثي الجليسريد، تاركاً 2-أحادي أسيل الجليسرول (2-Monoacylglycerol) وأحماضاً دهنية حرة. يُمتص 72% من 2-Monoacylglycerol مباشرة كما هو.',
+    explanationEn: 'Pancreatic lipase attacks the primary ester bonds of triacylglycerols at positions 1 & 3, releasing 2-monoacylglycerol and fatty acids. 72% of 2-MAG is absorbed directly.',
+    whyCorrectAr: 'لأن إنزيم الليباز البنكرياسي متخصص في شطر الروابط عند C1 و C3 فقط، مما ينتج 2-Monoacylglycerol و 2 أحماض دهنية حرة، ويمتص 72% منها مباشرة بدون تحلل إضافي.',
+    commonMistakeAr: 'الاعتقاد بأن الليباز البنكرياسي يفكك كل ثلاثي الجليسريد إلى جليسرول حر؛ في الواقع 22% فقط يتحلل بالكامل إلى جليسرول بعد تدخل إنزيم isomerase.',
+    clinicalPearlAr: 'في حالات نقص إنزيم الليباز البنكرياسي (مثل التهاب البنكرياس المزمن)، ينزل الدهن غير المهضوم في البراز (Steatorrhoea) دون فقدان الفيتامينات الذائبة في الدهون لأنها لا تتطلب هضماً إنزيمياً.',
+    referencePdf: 'Digestion and Absorption of Lipids',
+    pageNumber: 96,
+  },
+  {
+    id: 'da_2',
+    categoryId: 'digestion_absorption',
+    categoryTitleAr: 'هضم وامتصاص الدهون',
+    categoryTitleEn: 'Lipid Digestion & Absorption',
+    difficulty: 'easy',
+    questionAr: 'كيف تنتقل الأحماض الدهنية قصيرة السلسلة (أقل من 12 ذرة كربون) والجليسرول بعد امتصاصها من الأمعاء؟',
+    questionEn: 'How are short-chain fatty acids (<12 carbons) and glycerol transported after intestinal absorption?',
+    optionsAr: [
+      'تذوب في الماء وتمر مباشرة عبر الدورة البابية (Portal circulation) إلى الكبد',
+      'تتجمع داخل الكيلوميكرونات وتمر عبر الأوعية اللمفاوية',
+      'تتحد مع البروتين الدهني LDL في الدم المحيطي',
+      'ترتبط فقط مع Apo B-48 لتصل إلى الأنسجة العضلية'
+    ],
+    optionsEn: [
+      'Water-soluble and pass directly via portal circulation to the liver',
+      'Packaged into chylomicrons and pass via lymphatics',
+      'Bind with LDL in peripheral circulation',
+      'Bind exclusively to Apo B-48 to target muscles'
+    ],
+    correctIndex: 0,
+    explanationAr: 'الأحماض الدهنية قصيرة السلسلة (أقل من 12 كربون) والجليسرول قابلة للذوبان في الماء، لذا تعبر الغشاء المخاطي المعوي مباشرة وتنتقل عبر الوريد البابي إلى الكبد دون الحاجة لتكوين كيلوميكرونات أو المرور باللمف.',
+    explanationEn: 'Short chain fatty acids (< 12 carbons) and glycerol are water-soluble and pass via the portal circulation directly to the liver.',
+    whyCorrectAr: 'الذوبانية العالية في الماء تسمح لها بتجاوز الجهاز الليمفاوي ومسار الكيلوميكرونات والدخول المباشر إلى الأوردة البابية.',
+    commonMistakeAr: 'الخلط بين الأحماض الدهنية الطويلة (التي تحتاج أوعية لمفاوية Chylomicrons) والأحماض الدهنية القصيرة والمتوسطة.',
+    clinicalPearlAr: 'يستفاد من هذه الخاصية سريرياً بإعطاء مرضى متلازمات سوء الامتصاص (Malabsorption) أو استئصال اللفائفي دهوناً تحتوي على Medium-Chain Triglycerides (MCTs) لامتصاصها السهل والمباشر.',
+    referencePdf: 'Digestion and Absorption of Lipids',
+    pageNumber: 97,
+  },
+  {
+    id: 'da_3',
+    categoryId: 'digestion_absorption',
+    categoryTitleAr: 'هضم وامتصاص الدهون',
+    categoryTitleEn: 'Lipid Digestion & Absorption',
+    difficulty: 'hard',
+    questionAr: 'ما الفرق السريري الجوهري في البراز الدهني (Steatorrhoea) بين نقص الليباز البنكرياسي ونقص الأملاح الصفراوية؟',
+    questionEn: 'What is the key clinical difference in steatorrhoea between pancreatic lipase deficiency and bile salt deficiency?',
+    optionsAr: [
+      'في نقص العصارة الصفراوية يكون الدهن مهضوماً مع فقدان الفيتامينات الذائبة في الدهون، بينما في نقص الليباز يكون الدهن غير مهضوم دون فقدان الفيتامينات',
+      'في نقص الليباز البنكرياسي يحدث فقدان شديد لفيتامين A و D فقط',
+      'في نقص العصارة الصفراوية لا يحتوي البراز على دهون مطلقاً',
+      'كلاهما يؤدي إلى دهون غير مهضومة وفقدان متطابق للفيتامينات'
+    ],
+    optionsEn: [
+      'In bile salt deficiency fat is digested with loss of fat-soluble vitamins; in lipase deficiency fat is undigested with no vitamin loss',
+      'In lipase deficiency there is severe loss of vitamin A and D only',
+      'In bile salt deficiency stool contains no fat at all',
+      'Both cause identical undigested fat with identical vitamin loss'
+    ],
+    correctIndex: 0,
+    explanationAr: 'في نقص الليباز البنكرياسي، الدهن غير مهضوم وتُمتص الفيتامينات الذائبة لأنها لا تحتاج هضماً. أما في نقص أملاح الصفراء، يتم هضم الدهن بالإنزيم لكن يعجز الجسم عن تكوين المذيلات (Micelles)، مما يمنع امتصاص الفيتامينات الذائبة بالدهن ويسبب فقدانها في البراز.',
+    explanationEn: 'In bile deficiency, fat is digested but cannot form micelles, leading to loss of fat-soluble vitamins. In lipase deficiency, fat is undigested and fat-soluble vitamins are preserved.',
+    whyCorrectAr: 'الفيتامينات الذائبة في الدهون (A, D, E, K) تعتمد اعتماداً كلياً على الأملاح الصفراوية لتكوين المذيلات وامتصاصها، ولا تعتمد على إنزيم الليباز لهضمها.',
+    commonMistakeAr: 'افتراض أن غياب إنزيم الليباز يسبب دائماً سوء امتصاص لكل الفيتامينات الذائبة بالدهون.',
+    clinicalPearlAr: 'ظهور أعراض نزيف أو كدمات (نقص فيتامين K) أو لين عظام مع براز دهني يشير بقوة إلى انسداد القنوات الصفراوية (Obstructive Jaundice) وليس مجرد خلل بنكرياسي.',
+    referencePdf: 'Digestion and Absorption of Lipids',
+    pageNumber: 99,
+  },
+  {
+    id: 'da_4',
+    categoryId: 'digestion_absorption',
+    categoryTitleAr: 'هضم وامتصاص الدهون',
+    categoryTitleEn: 'Lipid Digestion & Absorption',
+    difficulty: 'medium',
+    questionAr: 'ما هو البروتين الخاص بالنسيج الدهني البني (Brown Adipose Tissue) المسؤول عن توليد الحرارة بدلاً من إنتاج ATP؟',
+    questionEn: 'What is the mitochondrial uncoupling protein in brown adipose tissue that generates heat instead of ATP?',
+    optionsAr: [
+      'ثيرموجينين (Thermogenin / UCP-1)',
+      'سيتوكروم C أوكسيديز',
+      'كارنيتين أسيل ترانسفيراز',
+      'ألبومين الميتوكوندريا'
+    ],
+    optionsEn: [
+      'Thermogenin (UCP-1)',
+      'Cytochrome c oxidase',
+      'Carnitine acyltransferase',
+      'Mitochondrial albumin'
+    ],
+    correctIndex: 0,
+    explanationAr: 'يحتوي النسيج الدهني البني على بروتين الثيرموجينين (Thermogenin) الذي يعمل كفاصل للفسفرة التأكسدية (Uncoupler of oxidative phosphorylation)، مما يقلل إنتاج ATP ويحول طاقة تدرج البروتونات إلى حرارة للحفاظ على دفء الجسم.',
+    explanationEn: 'Brown adipose tissue contains thermogenin, an uncoupler of oxidative phosphorylation that decreases ATP production and increases heat generation.',
+    whyCorrectAr: 'يقوم الثيرموجينين بتبديد منحدر البروتونات في الغشاء الداخلي للميتوكوندريا كحرارة.',
+    commonMistakeAr: 'الخلط بين النسيج الدهني الأبيض (الذي يخزن الطاقة) والنسيج الدهني البني (المسؤول عن التوليد الحراري غير المرتعش).',
+    clinicalPearlAr: 'يكثر النسيج الدهني البني عند حديثي الولادة لحمايتهم من انخفاض حرارة الجسم (Hypothermia) ويقل تدريجياً في البالغين.',
+    referencePdf: 'Digestion and Absorption of Lipids',
+    pageNumber: 101,
+  },
+
+  // --- FATTY ACID OXIDATION ---
+  {
+    id: 'ox_1',
+    categoryId: 'fa_oxidation',
+    categoryTitleAr: 'أكسدة الأحماض الدهنية ومكوك الكارنيتين',
+    categoryTitleEn: 'Fatty Acid Oxidation & Carnitine',
+    difficulty: 'medium',
+    questionAr: 'كم يبلغ صافي إنتاج جزيئات الـ ATP الناتجة عن الأكسدة الكاملة لحمض البالميتيك (Palmitic acid - 16C) إلى CO2 وماء؟',
+    questionEn: 'What is the net ATP yield from the complete beta-oxidation of palmitic acid (16 carbons)?',
+    optionsAr: [
+      '129 ATP',
+      '131 ATP',
+      '96 ATP',
+      '35 ATP'
+    ],
+    optionsEn: [
+      '129 ATP',
+      '131 ATP',
+      '96 ATP',
+      '35 ATP'
+    ],
+    correctIndex: 0,
+    explanationAr: 'طبقاً لمعادلة أ.د. سعيد عرابي: حمض البالميتيك (16C) يمر بـ 7 دورات أكسدة بيتا لإنتاج 8 جزيئات Acetyl CoA. تنتج الدورات الـ 7: 35 ATP (7 FADH2 + 7 NADH)، وتنتج جزيئات الأسيتيل كوا في كريبس: 96 ATP (8 × 12). الإجمالي 131 ATP. نخصم 2 ATP لاستهلاكها في خطوة التنشيط الأولى، فيكون الصافي = 129 ATP.',
+    explanationEn: 'Palmitic acid produces 35 ATP from 7 beta-oxidation cycles + 96 ATP from 8 Acetyl-CoA in Krebs cycle = 131 ATP minus 2 ATP for initial activation = 129 ATP net.',
+    whyCorrectAr: 'المعادلة: [(N/2 - 1) × 5] + [(N/2) × 12] - 2 = (7 × 5) + (8 × 12) - 2 = 35 + 96 - 2 = 129 ATP.',
+    commonMistakeAr: 'نسيان خصم رابطتي الفوسفات عالي الطاقة (-2 ATP) اللتين استُهلكتا بواسطة إنزيم Acyl CoA synthetase في السيتوسول.',
+    clinicalPearlAr: 'تنتج أكسدة الدهون كمية طاقة تفوق الكربوهيدرات والبروتينات بأكثر من الضعف (9 سعرات حرارية/جرام مقارنة بـ 4 سعرات حرارية/جرام).',
+    referencePdf: 'Fatty acids oxidation',
+    pageNumber: 109,
+  },
+  {
+    id: 'ox_2',
+    categoryId: 'fa_oxidation',
+    categoryTitleAr: 'أكسدة الأحماض الدهنية ومكوك الكارنيتين',
+    categoryTitleEn: 'Fatty Acid Oxidation & Carnitine',
+    difficulty: 'hard',
+    questionAr: 'أي من الخلايا والأنسجة التالية لا يحدث فيها إطلاقاً مسار أكسدة بيتا (Beta-Oxidation) للأحماض الدهنية؟',
+    questionEn: 'In which of the following tissues does beta-oxidation NEVER occur?',
+    optionsAr: [
+      'خلايا الدماغ وكريات الدم الحمراء (Brain and RBCs)',
+      'عضلة القلب والكلى',
+      'الكبد والعضلات الهيكلية',
+      'الخلايا المبطنة للأوعية الدموية'
+    ],
+    optionsEn: [
+      'Brain tissue and RBCs',
+      'Cardiac muscle and kidneys',
+      'Liver and skeletal muscle',
+      'Endothelial cells'
+    ],
+    correctIndex: 0,
+    explanationAr: 'تنص مذكرات الكيمياء الحيوية بوضوح: لا تحدث أكسدة بيتا إطلاقاً في خلايا الدماغ (حيث لا تعبر الأحماض الدهنية الحاجز الدموي الدماغي بكفاءة ولا تؤكسدها خلايا المخ) وكريات الدم الحمراء (لانعدام الميتوكوندريا فيها تماماً).',
+    explanationEn: 'Beta-oxidation never occurs in brain tissue and red blood cells (RBCs lack mitochondria; brain cannot utilize fatty acids for energy).',
+    whyCorrectAr: 'RBCs خالية تماماً من الميتوكوندريا، وميتوكوندريا الدماغ لا تستخدم الأحماض الدهنية كمصدر طاقة بل تعتمد على الجلوكوز أو الأجسام الكيتونية.',
+    commonMistakeAr: 'الاعتقاد بأن المخ يمكنه أكسدة الأحماض الدهنية؛ المخ يؤكسد الأجسام الكيتونية في المجاعة ولكنه لا يؤكسد الأحماض الدهنية أبداً.',
+    clinicalPearlAr: 'لأن خلايا الدم الحمراء تفتقر إلى الميتوكوندريا، فإنها تعتمد 100% على التحلل السكري اللاهوائي (Anaerobic Glycolysis) لإنتاج الطاقة.',
+    referencePdf: 'Fatty acids oxidation',
+    pageNumber: 106,
+  },
+  {
+    id: 'ox_3',
+    categoryId: 'fa_oxidation',
+    categoryTitleAr: 'أكسدة الأحماض الدهنية ومكوك الكارنيتين',
+    categoryTitleEn: 'Fatty Acid Oxidation & Carnitine',
+    difficulty: 'medium',
+    questionAr: 'ما هو دور مركب مالونيل كوا (Malonyl CoA) في تنظيم مكوك الكارنيتين وأكسدة الأحماض الدهنية؟',
+    questionEn: 'What is the regulatory effect of Malonyl CoA on the carnitine shuttle?',
+    optionsAr: [
+      'يثبط إنزيم Carnitine Palmitoyl Transferase I (CPT-I) فيمنع دخول الأحماض الدهنية للميتوكوندريا أثناء تصنيعها',
+      'يحفز إنزيم CPT-II في الغشاء الداخلي لتسريع الأكسدة',
+      'ينشط الناقل Carnitine Acylcarnitine Translocase',
+      'يعمل كمستقبل رئيسي لمجموعات الأسيل بدلاً من الكارنيتين'
+    ],
+    optionsEn: [
+      'Allosterically inhibits CPT-I, preventing fatty acid entry into mitochondria during FA synthesis',
+      'Stimulates CPT-II in the inner membrane to accelerate oxidation',
+      'Activates carnitine acylcarnitine translocase',
+      'Acts as the primary acyl acceptor instead of carnitine'
+    ],
+    correctIndex: 0,
+    explanationAr: 'مركب Malonyl CoA هو وسيط رئيسي في تصنيع الأحماض الدهنية؛ يقوم بتثبيط إنزيم Carnitine Acyltransferase I (CPT-I) الموجود في الغشاء الميتوكوندري الخارجي، مما يمنع الأحماض الدهنية المصنعة حديثاً من دخول الميتوكوندريا للأكسدة (منع الدورة العبثية Futile Cycle).',
+    explanationEn: 'Malonyl CoA inhibits Carnitine Palmitoyl Transferase I (CPT-I), thereby preventing reciprocal fatty acid oxidation while fatty acid synthesis is active.',
+    whyCorrectAr: 'هو المنظم الإشاري المتبادل (Reciprocal regulation) بين تصنيع الدهون وأكسدتها.',
+    commonMistakeAr: 'الخلط بين موقع CPT-I (الغشاء الخارجي والمثبط بالمالونيل كوا) و CPT-II (الغشاء الداخلي).',
+    clinicalPearlAr: 'بعد تناول وجبة غنية بالكربوهيدرات، يرتفع الأنسولين وينشط ACC مما يزيد Malonyl CoA ويوقف أكسدة الدهون فوراً لصالح تخزينها.',
+    referencePdf: 'Fatty acids oxidation',
+    pageNumber: 107,
+  },
+  {
+    id: 'ox_4',
+    categoryId: 'fa_oxidation',
+    categoryTitleAr: 'أكسدة الأحماض الدهنية ومكوك الكارنيتين',
+    categoryTitleEn: 'Fatty Acid Oxidation & Carnitine',
+    difficulty: 'hard',
+    questionAr: 'ما هو الإنزيم الناقص في مرض ريفسوم (Refsum’s disease)، وما هو الحمض الدهني الذي يتراكم في الجهاز العصبي مسبباً الصمم والعمى؟',
+    questionEn: 'Which pathway/enzyme is defective in Refsum’s disease, and what fatty acid accumulates?',
+    optionsAr: [
+      'نقص إنزيمات أكسدة ألفا (Alpha-oxidation)، مما يؤدي لتراكم حمض الفايتانيك (Phytanic acid)',
+      'نقص إنزيم أكسدة أوميغا، مما يؤدي لتراكم حمض السوبيريك (Suberic acid)',
+      'نقص إنزيم كارنيتين ترانسفيراز، مما يؤدي لتراكم حمض البالميتيك',
+      'نقص إنزيم ميثيل مالونيل كوا موتاز، مما يؤدي لتراكم البروبيونيك'
+    ],
+    optionsEn: [
+      'Deficiency of alpha-oxidation enzymes, leading to accumulation of Phytanic acid',
+      'Deficiency of omega-oxidation, leading to accumulation of Suberic acid',
+      'Deficiency of carnitine transferase, accumulating palmitate',
+      'Deficiency of methylmalonyl CoA mutase, accumulating propionate'
+    ],
+    correctIndex: 0,
+    explanationAr: 'مرض ريفسوم هو اضطراب وراثي ناتج عن خلل في إنزيمات أكسدة ألفا (Alpha-hydroxylase) المسؤولة عن أكسدة الأحماض الدهنية المتفرعة الحاوية على مجموعة ميثيل في الموقع بيتا مثل حمض الفايتانيك (Phytanic acid) المشتق من الكلوروفيل في النباتات، مما يسبب تراكمه وإصابة الأعصاب بالصمم والعمى.',
+    explanationEn: 'Refsum’s disease is an inherited deficiency in alpha-oxidation of phytanic acid (a branched-chain fatty acid), leading to neurological damage, deafness, and retinitis pigmentosa.',
+    whyCorrectAr: 'لأن وجود مجموعة ميثيل على ذرة كربون بيتا يمنع عمل إنزيمات أكسدة بيتا التقليدية، فيتطلب الأمر إزالة كربون ألفا أولاً عبر أكسدة ألفا.',
+    commonMistakeAr: 'الخلط بين أكسدة ألفا (إزالة كربون واحد للأحماض المتفرعة) وأكسدة أوميغا (أكسدة طرف الميثيل لإنتاج أحماض ثنائية الكربوكسيل).',
+    clinicalPearlAr: 'علاج مرضى ريفسوم يتضمن حمية غذائية صارمة خالية تماماً من مشتقات الألبان ولحوم الحيوانات المجترة والنباتات الخضراء المحتوية على الفايتول.',
+    referencePdf: 'Fatty acids oxidation',
+    pageNumber: 112,
+  },
+  {
+    id: 'ox_5',
+    categoryId: 'fa_oxidation',
+    categoryTitleAr: 'أكسدة الأحماض الدهنية ومكوك الكارنيتين',
+    categoryTitleEn: 'Fatty Acid Oxidation & Carnitine',
+    difficulty: 'medium',
+    questionAr: 'ما هو الناتج النهائي لأكسدة الأحماض الدهنية ذات السلسلة الفردية (Odd-chain fatty acids) قبل تحويله إلى Succinyl CoA؟',
+    questionEn: 'What is the 3-carbon end-product of odd-chain fatty acid beta-oxidation before conversion to Succinyl CoA?',
+    optionsAr: [
+      'بروبيونيل كوا (Propionyl CoA)',
+      'أسيتيل كوا (Acetyl CoA)',
+      'أسيتواسيتيل كوا (Acetoacetyl CoA)',
+      'مالونيل كوا (Malonyl CoA)'
+    ],
+    optionsEn: [
+      'Propionyl CoA (3 carbons)',
+      'Acetyl CoA',
+      'Acetoacetyl CoA',
+      'Malonyl CoA'
+    ],
+    correctIndex: 0,
+    explanationAr: 'الأحماض الدهنية ذات العدد الفردي من ذرات الكربون تتأكسد بمسار أكسدة بيتا حتى يتبقى في النهاية جزيء ثلاثي الكربون يسمى Propionyl CoA، والذي يتحول بعد ذلك إلى Methylmalonyl CoA (بواسطة البيوتين و ATP) ثم إلى Succinyl CoA (بمساعدة فيتامين B12).',
+    explanationEn: 'Odd-chain fatty acids are oxidized until a 3-carbon propionyl CoA remains, which is converted to methylmalonyl CoA and then succinyl CoA.',
+    whyCorrectAr: 'لأن إزالة وحدات ثنائية الكربون (Acetyl CoA) من سلسلة فردية يترك حتماً 3 ذرات كربون في النهاية (Propionyl CoA).',
+    commonMistakeAr: 'الظن بأن الأحماض الفردية تعطي نواتج متطابقة مع الأحماض الزوجية التي تنتهي بأسيتيل كوا فقط.',
+    clinicalPearlAr: 'تحول Methylmalonyl CoA إلى Succinyl CoA يتطلب Coenzyme B12 (Deoxyadenosylcobalamin)؛ نقصه يسبب Methylmalonic aciduria واعتلالات عصبية.',
+    referencePdf: 'Fatty acids oxidation',
+    pageNumber: 111,
+  },
+
+  // --- FATTY ACID SYNTHESIS ---
+  {
+    id: 'fas_1',
+    categoryId: 'fa_synthesis',
+    categoryTitleAr: 'تصنيع الأحماض الدهنية',
+    categoryTitleEn: 'Fatty Acid Synthesis (De Novo)',
+    difficulty: 'medium',
+    questionAr: 'كيف يخرج أسيتيل كوا (Acetyl CoA) من الميتوكوندريا إلى السيتوسول لبدء تصنيع الأحماض الدهنية؟',
+    questionEn: 'How does Acetyl CoA exit mitochondria into the cytosol for fatty acid synthesis?',
+    optionsAr: [
+      'يتحد مع أوكسالواسيتات ليكون سترات (Citrate) تعبر الغشاء ثم تنشطر بإنزيم Citrate Lyase',
+      'يعبر الغشاء الداخلي مباشرة عبر قنوات الانتشار البسيط',
+      'يرتبط بناقل الكارنيتين مثل الأحماض الدهنية الطويلة',
+      'يتحول إلى أسيتون ثم يتطاير إلى السيتوسول'
+    ],
+    optionsEn: [
+      'Condenses with oxaloacetate to form citrate, traverses membrane, cleaved by Citrate Lyase',
+      'Diffuses directly through the inner mitochondrial membrane',
+      'Binds carnitine shuttle like long chain fatty acids',
+      'Converts to acetone which evaporates to cytosol'
+    ],
+    correctIndex: 0,
+    explanationAr: 'الغشاء الداخلي للميتوكوندريا غير نفاذ لأسيتيل كوا (Impermeable to Acetyl CoA). لذلك يتكثف مع Oxaloacetate بواسطة Citrate Synthase لإنتاج Citrate التي تعبر عبر ناقل خاص إلى السيتوسول، وهناك تنشطر بواسطة إنزيم Citrate Lyase (باستهلاك ATP) لتعطي Acetyl CoA و Oxaloacetate.',
+    explanationEn: 'The inner mitochondrial membrane is impermeable to acetyl CoA. It condenses with oxaloacetate into citrate, which leaves the mitochondria and is cleaved by citrate lyase.',
+    whyCorrectAr: 'مكوك السترات (Citrate Shuttle) هو الوسيلة الحيوية لنقل مجموعات الأسيتيل من الميتوكوندريا إلى السيتوسول لبناء الدهون.',
+    commonMistakeAr: 'الاعتقاد بأن أسيتيل كوا يستطيع عبور الغشاء الداخلي بمفرده أو عبر مكوك الكارنيتين.',
+    clinicalPearlAr: 'تفاعل إنزيم ماليك (Malic enzyme) في السيتوسول الذي يحول Malate الناتجة إلى Pyruvate ينتج NADPH+H+ وهو ضروري جداً لعملية تصنيع الدهون.',
+    referencePdf: 'Fatty Acids Synthesis',
+    pageNumber: 114,
+  },
+  {
+    id: 'fas_2',
+    categoryId: 'fa_synthesis',
+    categoryTitleAr: 'تصنيع الأحماض الدهنية',
+    categoryTitleEn: 'Fatty Acid Synthesis (De Novo)',
+    difficulty: 'easy',
+    questionAr: 'ما هي الخطوة المحددة للسرعة والملزمة (Committed step) في مسار تصنيع الأحماض الدهنية في السيتوسول؟',
+    questionEn: 'What is the rate-limiting and committed step in cytoplasmic fatty acid synthesis?',
+    optionsAr: [
+      'كربكسلة أسيتيل كوا إلى مالونيل كوا بواسطة Acetyl CoA carboxylase ووجود البيوتين و ATP',
+      'تفاعل إنزيم الثيوليز لإنتاج أسيتواسيتيل كوا',
+      'شطر السترات بواسطة إنزيم Citrate Lyase',
+      'إطلاق حمض البالميتيك بواسطة إنزيم Thioesterase'
+    ],
+    optionsEn: [
+      'Carboxylation of Acetyl CoA to Malonyl CoA by Acetyl CoA carboxylase (biotin + ATP)',
+      'Thiolase reaction producing acetoacetyl CoA',
+      'Citrate cleavage by Citrate Lyase',
+      'Release of palmitate by Thioesterase'
+    ],
+    correctIndex: 0,
+    explanationAr: 'الخطوة الملزمة والمحددة للسرعة هي كربكسلة Acetyl CoA إلى Malonyl CoA بواسطة إنزيم Acetyl CoA Carboxylase (ACC) الذي يحتاج إلى فيتامين البيوتين (Biotin) و CO2 وجزيء ATP.',
+    explanationEn: 'The committed step is the carboxylation of acetyl CoA to malonyl CoA catalyzed by acetyl CoA carboxylase in the presence of biotin and ATP.',
+    whyCorrectAr: 'هو الإنزيم المنظم الرئيسي (Key regulatory enzyme) الذي يتحكم بتدفق الكربون إلى مسار Lipogenesis.',
+    commonMistakeAr: 'الظن بأن تفاعل تكثيف السلاسل بواسطة 3-ketoacyl synthase هو الخطوة المقيدة للسرعة.',
+    clinicalPearlAr: 'يتم تنشيط هذا الإنزيم هرمونياً بواسطة الأنسولين (عبر إزالة الفوسفات) وبواسطة السترات تفارغياً (Allosteric activation)، بينما يثبطه الجلوكاجون ومركبات Acyl CoA طويلة السلسلة.',
+    referencePdf: 'Fatty Acids Synthesis',
+    pageNumber: 115,
+  },
+  {
+    id: 'fas_3',
+    categoryId: 'fa_synthesis',
+    categoryTitleAr: 'تصنيع الأحماض الدهنية',
+    categoryTitleEn: 'Fatty Acid Synthesis (De Novo)',
+    difficulty: 'medium',
+    questionAr: 'كم عدد الأحماض الدهنية الأساسية (Essential Fatty Acids) التي لا يستطيع جسم الإنسان تصنيعها ويجب أخذها في الغذاء؟',
+    questionEn: 'Which of the following are essential fatty acids that cannot be synthesized in human body?',
+    optionsAr: [
+      'حمض اللينوليك (Linoleic 18:2) وحمض اللينولينيك (Linolenic 18:3) والأراكيدونيك',
+      'حمض البالميتيك وحمض الستياريك فقط',
+      'حمض الأوليك وحمض البالميتوليك',
+      'حمض الأسيتيك والبيوتيريك'
+    ],
+    optionsEn: [
+      'Linoleic acid (18:2), Linolenic acid (18:3), and Arachidonic acid',
+      'Palmitic acid and stearic acid only',
+      'Oleic acid and palmitoleic acid',
+      'Acetic and butyric acid'
+    ],
+    correctIndex: 0,
+    explanationAr: 'الأحماض الدهنية الأساسية هي أحماض عديدة اللاإشباع (Polyunsaturated) لا يستطيع الإنسان تصنيعها لأن خلايا جسمه تفتقر إلى إنزيمات Desaturases القادرة على إدخال روابط ثنائية بعد ذرة الكربون 9. وأهمها: Linoleic acid (18:2) و Linolenic (18:3) و Arachidonic acid (20:4).',
+    explanationEn: 'Essential fatty acids contain more than one double bond and cannot be formed in human body (e.g. Linoleic 18:2, Linolenic 18:3, Arachidonic 20:4).',
+    whyCorrectAr: 'الإنسان يستطيع تصنيع الأحماض غير المشبعة أحادية الرابطة مثل Oleic (18:1) و Palmitoleic (16:1)، لكنه يعجز عن تصنيع عديدة الروابط الأساسية.',
+    commonMistakeAr: 'اعتبار حمض الأوليك (Oleic acid) من الأحماض الأساسية؛ الأوليك يصنعه الجسم بسهولة من حمض الستياريك في الميكروسومات.',
+    clinicalPearlAr: 'تدخل الأحماض الدهنية الأساسية في الموضع 2 من الدهون الفوسفاتية (Phospholipids) وتمنع تراكم الدهون في الكبد وتمنع تصلب الشرايين عبر سرعة استقلاب الكوليسترول.',
+    referencePdf: 'Fatty Acids Synthesis',
+    pageNumber: 120,
+  },
+
+  // --- LIPOGENESIS & LIPOLYSIS ---
+  {
+    id: 'll_1',
+    categoryId: 'lipogenesis_lipolysis',
+    categoryTitleAr: 'تخليق وتكسير الدهون المخزنة والنسيج الدهني',
+    categoryTitleEn: 'Lipogenesis & Lipolysis',
+    difficulty: 'hard',
+    questionAr: 'لماذا تعتمد الأنسجة الدهنية (Adipose tissue) حصراً على التحلل السكري (Glycolysis) لتوفير جليسرول-3-فوسفات لتخزين الدهون؟',
+    questionEn: 'Why does adipose tissue strictly depend on glycolysis to provide glycerol-3-phosphate for lipogenesis?',
+    optionsAr: [
+      'بسبب غياب ونقص إنزيم جليسروكاينيز (Glycerokinase) في النسيج الدهني والعضلات',
+      'لأن الجليسرول الحر سام للخلايا الدهنية',
+      'لأن إنزيم جليسروكاينيز يعمل فقط عند درجة حرارة 42 مئوية',
+      'لأن النسيج الدهني لا يحتوي على أي روابط فوسفاتية'
+    ],
+    optionsEn: [
+      'Because glycerokinase enzyme is deficient in adipose tissue and muscles',
+      'Because free glycerol is toxic to adipocytes',
+      'Because glycerokinase only functions at 42 degrees C',
+      'Because adipose tissue lacks phosphate bonds'
+    ],
+    correctIndex: 0,
+    explanationAr: 'ينص الكتاب صراحة: في العضلات والأنسجة الدهنية يكون إنزيم جليسروكاينيز (Glycerokinase) غائباً/ناقصاً. لذا لا تستطيع الخلايا الدهنية فسفرة الجليسرول الناتج عن التحلل الدهني، وتعتمد كلياً على تحويل الجلوكوز عبر التحلل السكري إلى Dihydroxyacetone phosphate (DHAP) ثم إلى Glycerol-3-phosphate.',
+    explanationEn: 'In muscles and adipose tissue, glycerokinase is deficient, so glycerol phosphate must be formed from glucose via glycolysis (DHAP).',
+    whyCorrectAr: 'غياب Glycerokinase في الخلية الدهنية يجبرها على الاعتماد على امتصاص الجلوكوز المحفز بالأنسولين لتصنيع الدهون الثلاثية.',
+    commonMistakeAr: 'الاعتقاد بأن الجليسرول الناتج من تكسير الدهون (Lipolysis) يمكن إعادة استخدامه فوراً في نفس الخلية الدهنية لتصنيع دهون جديدة.',
+    clinicalPearlAr: 'في حالات نقص الأنسولين (مرض السكري غير المنضبط)، يعجز النسيج الدهني عن إدخال الجلوكوز، فلا يتوفر جليسرول فوسفات، فيتوقف تخزين الدهون وينشط تكسيرها المفرط.',
+    referencePdf: 'Lipogenesis and Lipolysis',
+    pageNumber: 102,
+  },
+  {
+    id: 'll_2',
+    categoryId: 'lipogenesis_lipolysis',
+    categoryTitleAr: 'تخليق وتكسير الدهون المخزنة والنسيج الدهني',
+    categoryTitleEn: 'Lipogenesis & Lipolysis',
+    difficulty: 'medium',
+    questionAr: 'ما هو الإنزيم المفتاحي المنظم لتحلل الدهون (Lipolysis) في الخلايا الدهنية، وما هو شكله النشط؟',
+    questionEn: 'What is the rate-limiting enzyme of lipolysis, and which form is active?',
+    optionsAr: [
+      'ليباز ثلاثي الجليسريد الحساس للهرمونات (HSTG lipase) ويكون نشطاً في صورته المفسفرة (Phosphorylated)',
+      'ليباز البروتين الدهني (LPL) ويكون نشطاً في صورته غير المفسفرة',
+      'ليباز أحادي الجليسرول ويكون نشطاً فقط في وجود الكالسيوم',
+      'جليسروكاينيز ويكون نشطاً في وجود الأنسولين'
+    ],
+    optionsEn: [
+      'Hormone-sensitive triacylglycerol lipase (active when phosphorylated)',
+      'Lipoprotein lipase (active when dephosphorylated)',
+      'Monoacylglycerol lipase (active with calcium only)',
+      'Glycerokinase (active in presence of insulin)'
+    ],
+    correctIndex: 0,
+    explanationAr: 'الإنزيم المفتاحي هو Hormone-Sensitive Lipase (HSTG lipase). أثناء الصيام، تفرز هرمونات الجلوكاجون والإبينفرين التي ترفع cAMP وتنشط Protein Kinase A، فيقوم بفسفرة الإنزيم إلى شكله النشط (Active Phosphorylated form) لتحفيز خروج الأحماض الدهنية.',
+    explanationEn: 'The key enzyme is hormone-sensitive triacylglycerol lipase, which is active in its phosphorylated form (stimulated by glucagon/epinephrine via cAMP).',
+    whyCorrectAr: 'هو الإنزيم الذي يتحكم في الخطوة الأولى لتفكيك مخازن Triacylglycerol في النسيج الدهني إلى Diacylglycerol وحمض دهني حر.',
+    commonMistakeAr: 'الخلط بين قاعدة التنشيط: إنزيم تصنيع الدهون (ACC) ينشط عند إزالة الفوسفات، بينما إنزيم تكسير الدهون (HSL) ينشط بإضافة الفوسفات.',
+    clinicalPearlAr: 'مادة الكافيين (Caffeine) الموجودة في القهوة تثبط إنزيم Phosphodiesterase، مما يمنع تكسير cAMP ويحافظ على تنشيط Lipolysis وحرق الدهون.',
+    referencePdf: 'Lipogenesis and Lipolysis',
+    pageNumber: 104,
+  },
+
+  // --- KETONE BODIES ---
+  {
+    id: 'kb_1',
+    categoryId: 'ketone_bodies',
+    categoryTitleAr: 'الأجسام الكيتونية والحماض الكيتوني',
+    categoryTitleEn: 'Ketone Bodies & Ketosis',
+    difficulty: 'medium',
+    questionAr: 'لماذا تعجز خلايا الكبد عن أكسدة الأجسام الكيتونية (Ketolysis) رغم أنها المصنع الوحيد لها في الجسم؟',
+    questionEn: 'Why can the liver NOT oxidize ketone bodies despite being the sole site of ketogenesis?',
+    optionsAr: [
+      'لأن الكبد يفتقر لإنزيم الثيوفوريز (Thiophorase / Succinyl-CoA:acetoacetate transferase)',
+      'لأن الكبد لا يحتوي على دورة كريبس إطلاقاً',
+      'لأن ميتوكوندريا الكبد تفتقر للإنزيمات التنفسية',
+      'لأن الأجسام الكيتونية ترتبط ببروتينات الكبد وتتعطل'
+    ],
+    optionsEn: [
+      'Because the liver lacks the enzyme thiophorase (ketoacyl-CoA transferase)',
+      'Because the liver has no citric acid cycle',
+      'Because liver mitochondria lack respiratory chain enzymes',
+      'Because ketone bodies bind irreversibly to liver albumin'
+    ],
+    correctIndex: 0,
+    explanationAr: 'لا تستطيع خلايا الكبد استخدام وأكسدة الأجسام الكيتونية لأنها تفتقر إلى إنزيم الثيوفوريز (Thiophorase / Succinyl-CoA:acetoacetate CoA transferase) المسؤول عن تنشيط Acetoacetate إلى Acetoacetyl CoA، فتصدرها إلى الدم لتستفيد منها الأنسجة المحيطية مثل العضلات والكلى والدماغ.',
+    explanationEn: 'The liver lacks the enzyme thiophorase (succinyl CoA acetoacetate transferase) and therefore cannot oxidize ketone bodies (ketolysis).',
+    whyCorrectAr: 'غياب هذا الإنزيم في الكبد يمنع الكبد من استهلاك الأجسام الكيتونية التي يصنعها، مما يجعلها متاحة حصراً للأنسجة المحيطية الحيوية.',
+    commonMistakeAr: 'الاعتقاد بأن الكبد يفتقر لإنزيم HMG CoA lyase؛ بل الكبد غني بـ lyase ويصنع الكيتونات، لكنه يفتقر لـ thiophorase.',
+    clinicalPearlAr: 'في حالات الصيام المطول لأكثر من 5-6 أيام، يتكيف الدماغ ويبدأ في أكسدة الأجسام الكيتونية لتأمين حتى 75% من احتياجاته من الطاقة.',
+    referencePdf: 'Eicosanoids & Conjugated Lipids & Ketone Bodies',
+    pageNumber: 129,
+  },
+  {
+    id: 'kb_2',
+    categoryId: 'ketone_bodies',
+    categoryTitleAr: 'الأجسام الكيتونية والحماض الكيتوني',
+    categoryTitleEn: 'Ketone Bodies & Ketosis',
+    difficulty: 'hard',
+    questionAr: 'ما هي الآلية الحيوية لحدوث فرط بوتاسيوم الدم (Hyperkalemia) المصاحب للحماض الكيتوني السكري (DKA)؟',
+    questionEn: 'What is the mechanism causing hyperkalemia in diabetic ketoacidosis (DKA)?',
+    optionsAr: [
+      'انخفاض درجة الحموضة (Acidosis) يدفع أيونات الهيدروجين لدخول الخلايا مما يجبر أيونات البوتاسيوم (K+) على الخروج إلى مجرى الدم',
+      'زيادة إفراز هرمون الألدوستيرون من الغدة الكظرية',
+      'تثبيط امتصاص البوتاسيوم في الأمعاء الدقيقة',
+      'تفكك خلايا العضلات نتيجة استهلاك الكارنيتين المفرط'
+    ],
+    optionsEn: [
+      'Acidosis causes shift of K+ ions from intracellular fluid to the blood in exchange for H+',
+      'Hypersecretion of aldosterone from adrenal glands',
+      'Inhibition of potassium absorption in small intestines',
+      'Muscle cell lysis due to excessive carnitine uptake'
+    ],
+    correctIndex: 0,
+    explanationAr: 'تراكم الأحماض الكيتونية (Acetoacetate و Beta-hydroxybutyrate) يستنزف مخزون البيكربونات المنظم مؤدياً إلى الحماض (Acidosis). ولدعم التعادل الأيوني، تدخل بروتونات H+ الفائضة إلى داخل الخلايا، فيخرج مقابلها البوتاسيوم (K+) من داخل الخلايا إلى الدم مسبباً Hyperkalemia.',
+    explanationEn: 'Acidosis causes transfer of potassium (K+) ions from intracellular fluid into blood leading to hyperkalemia.',
+    whyCorrectAr: 'هو التبادل الخلوي H+/K+ buffering الذي يحمي الـ pH لكنه يرفع مستوى البوتاسيوم خارج الخلايا.',
+    commonMistakeAr: 'الظن بأن مريض الحماض الكيتوني لديه فائض في مخزون البوتاسيوم الإجمالي في الجسم؛ في الواقع يكون البوتاسيوم الكلي في الجسم مستنزفاً عبر البول رغم ارتفاع تركيزه في مصل الدم.',
+    clinicalPearlAr: 'عند علاج مريض DKA بالأنسولين، يتحرك البوتاسيوم سريعاً ليعود إلى داخل الخلايا، مما قد يسبب هبوطاً مفاجئاً خطيراً في بوتاسيوم الدم (Hypokalemia) إن لم تتم مراقبته وتعويضه بعناية.',
+    referencePdf: 'Eicosanoids & Conjugated Lipids & Ketone Bodies',
+    pageNumber: 132,
+  },
+
+  // --- CHOLESTEROL & FATTY LIVER ---
+  {
+    id: 'chol_1',
+    categoryId: 'cholesterol_fatty_liver',
+    categoryTitleAr: 'أيض الكوليسترول وأمراض الكبد الدهني',
+    categoryTitleEn: 'Cholesterol & Fatty Liver',
+    difficulty: 'medium',
+    questionAr: 'ما هو الإنزيم المقيد للسرعة في مسار تصنيع الكوليسترول، وما هو الدواء الصيدلاني الذي يثبطه تثبيطاً تنافسياً عكوساً؟',
+    questionEn: 'What is the rate-limiting enzyme of cholesterol synthesis and which class of drugs competitively inhibits it?',
+    optionsAr: [
+      'إنزيم HMG-CoA reductase وتثبطه أدوية الستاتين (مثل Lovastatin و Mevastatin)',
+      'إنزيم Thiolase وتثبطه أدوية الأسبرين',
+      'إنزيم HMG-CoA lyase وتثبطه مشتقات الفايبرات',
+      'إنزيم Squalene synthase وتثبطه أدوية الكورتيزول'
+    ],
+    optionsEn: [
+      'HMG-CoA reductase, competitively inhibited by Statins (Lovastatin, Mevastatin)',
+      'Thiolase, inhibited by Aspirin',
+      'HMG-CoA lyase, inhibited by Fibrates',
+      'Squalene synthase, inhibited by Cortisol'
+    ],
+    correctIndex: 0,
+    explanationAr: 'الإنزيم المفتاحي الرئيسي هو HMG-CoA reductase الذي يحول HMG-CoA إلى Mevalonate في السيتوسول مستهلكاً 2 NADPH. أدوية الستاتينات (مثل Lovastatin و Mevastatin) تشبه بنيوياً HMG-CoA وتثبط هذا الإنزيم تنافسياً بشكل عكوس لخفض كوليسترول الدم.',
+    explanationEn: 'HMG-CoA reductase is the key enzyme. Lovastatin and mevastatin inhibit it by reversible competitive inhibition to lower plasma cholesterol.',
+    whyCorrectAr: 'هو الخطوة غير العكوسة الأولى المحددة للسرعة في المسار، وتثبيطه يقلل تكوين الميفالونات وبالتالي الكوليسترول.',
+    commonMistakeAr: 'الخلط بين HMG-CoA synthase (الذي يعمل في كل من الكيتونات والكوليسترول) و HMG-CoA reductase (الخاص بالكوليسترول فقط في السيتوسول).',
+    clinicalPearlAr: 'تثبيط إنزيم HMG-CoA reductase يدفع خلايا الكبد لزيادة التعبير عن مستقبلات LDL Receptors على سطحها، مما يسحب الكوليسترول الضار من الدم بكفاءة عالية.',
+    referencePdf: 'Metabolism of Cholesterol & Fatty liver',
+    pageNumber: 135,
+  },
+  {
+    id: 'chol_2',
+    categoryId: 'cholesterol_fatty_liver',
+    categoryTitleAr: 'أيض الكوليسترول وأمراض الكبد الدهني',
+    categoryTitleEn: 'Cholesterol & Fatty Liver',
+    difficulty: 'hard',
+    questionAr: 'أي من المواد التالية لا يعتبر من العوامل الشحمية (Lipotropic Factors) التي تحمي الكبد من تراكم الدهون وتكون الكبد الدهني؟',
+    questionEn: 'Which of the following is NOT a lipotropic factor preventing fatty liver?',
+    optionsAr: [
+      'حمض البالميتيك المشبع (Saturated Palmitic acid)',
+      'الكولين والميثيونين (Choline & Methionine)',
+      'الإينوزيتول والسيرين (Inositol & Serine)',
+      'فيتامين B12 وحمض الفوليك (Vitamin B12 & Folic acid)'
+    ],
+    optionsEn: [
+      'Saturated palmitic acid',
+      'Choline and Methionine',
+      'Inositol and Serine',
+      'Vitamin B12 and Folic acid'
+    ],
+    correctIndex: 0,
+    explanationAr: 'العوامل الشحمية (Lipotropic factors) هي المواد التي تساعد في تصريف الدهون من الكبد عبر تصنيع الفوسفوليبيدات والبروتينات الدهنية (مثل الكولين، الميثيونين كواهب للميثيل، الإينوزيتول، فيتامين B12، حمض الفوليك، والأحماض الدهنية الأساسية غير المشبعة). أما حمض البالميتيك المشبع فليس من العوامل الشحمية بل يساهم في زيادة دهون الجسم.',
+    explanationEn: 'Lipotropic factors aid fat mobilization from liver: choline, inositol, methionine, serine, B12, folic acid, essential FA. Saturated palmitic acid is not a lipotropic factor.',
+    whyCorrectAr: 'العوامل الشحمية تدخل في بناء الفوسفاتيديل كولين (Lecithin) و Apo-lipoproteins اللازمة لتصدير VLDL من الكبد إلى الدم.',
+    commonMistakeAr: 'افتراض أن جميع أنواع الأحماض الدهنية تمنع الكبد الدهني؛ الأحماض الدهنية الأساسية عديدة اللاإشباع فقط هي التي تعمل كعوامل شحمية.',
+    clinicalPearlAr: 'التسمم برابع كلوريد الكربون (CCl4) أو الكلوروفورم يسبب تدهناً كبدياً حاداً (Fatty liver) بسبب تثبيط تخليق وإفراز البروتينات الدهنية apolipoproteins.',
+    referencePdf: 'Metabolism of Cholesterol & Fatty liver',
+    pageNumber: 155,
+  },
+  {
+    id: 'chol_3',
+    categoryId: 'cholesterol_fatty_liver',
+    categoryTitleAr: 'أيض الكوليسترول وأمراض الكبد الدهني',
+    categoryTitleEn: 'Cholesterol & Fatty Liver',
+    difficulty: 'medium',
+    questionAr: 'ما الفرق بين إنزيم ACAT وإنزيم LCAT في أسترة الكوليسترول؟',
+    questionEn: 'What is the key difference between ACAT and LCAT enzymes in cholesterol esterification?',
+    optionsAr: [
+      'ACAT يعمل داخل الأنسجة (الكبد) مستخدماً Acyl CoA، بينما LCAT يعمل في البلازما على جزيئات HDL مستخدماً الليسيثين',
+      'LCAT يعمل داخل الميتوكوندريا فقط بينما ACAT يعمل في المعدة',
+      'ACAT يحطم إستر الكوليسترول بينما LCAT يقوم ببنائه',
+      'كلاهما يعمل في البلازما ولهما نفس الركيزة بالضبط'
+    ],
+    optionsEn: [
+      'ACAT acts in tissues using Acyl CoA; LCAT acts in plasma on HDL using Lecithin',
+      'LCAT acts inside mitochondria only while ACAT acts in stomach',
+      'ACAT degrades cholesteryl esters while LCAT synthesizes them',
+      'Both act identically in blood plasma'
+    ],
+    correctIndex: 0,
+    explanationAr: 'إنزيم ACAT (Acyl-CoA Cholesterol Acyltransferase) يعمل داخل الأنسجة والخلايا (مثل الكبد) لنقل حمض دهني من Acyl-CoA إلى الكوليسترول لتخزينه كإستر. بينما إنزيم LCAT (Lecithin Cholesterol Acyltransferase) يوجد في بلازما الدم ويكون مرتبطاً بـ HDL، ويأخذ حمضاً دهنياً من الليسيثين لأسترة الكوليسترول الحر وسحبه من الأنسجة.',
+    explanationEn: 'In tissues, cholesterol is esterified by ACAT using Acyl-CoA. In plasma, it is esterified by LCAT using lecithin, associated with HDL.',
+    whyCorrectAr: 'LCAT ضروري لمسار النقل العكسي للكوليسترول (Reverse Cholesterol Transport) لتنظيف الشرايين، بينما ACAT مسؤول عن التخزين الداخلي في الخلايا.',
+    commonMistakeAr: 'الخلط بين موقع الإنزيمين ومصدر الحمض الدهني (Acyl-CoA لـ ACAT، والليسيثين لـ LCAT).',
+    clinicalPearlAr: 'يتم تنشيط إنزيم LCAT في البلازما بواسطة البروتين الشحمي Apo A-1 الموجود على سطح جزيئات HDL.',
+    referencePdf: 'Plasma Lipids and Plasma Lipoproteins',
+    pageNumber: 139,
+  },
+
+  // --- LIPOPROTEINS & ATHEROSCLEROSIS ---
+  {
+    id: 'lipo_1',
+    categoryId: 'lipoproteins_atherosclerosis',
+    categoryTitleAr: 'البروتينات الدهنية وتصلب الشرايين',
+    categoryTitleEn: 'Lipoproteins & Atherosclerosis',
+    difficulty: 'medium',
+    questionAr: 'ما هو الترتيب الصحيح للبروتينات الدهنية تصاعدياً حسب الكثافة بواسطة الطرد المركزي الفائق (Ultracentrifugation)؟',
+    questionEn: 'What is the ascending order of lipoproteins according to density (from lowest to highest)?',
+    optionsAr: [
+      'الكيلوميكرونات < VLDL < LDL < HDL',
+      'HDL < LDL < VLDL < الكيلوميكرونات',
+      'LDL < HDL < VLDL < الكيلوميكرونات',
+      'VLDL < الكيلوميكرونات < HDL < LDL'
+    ],
+    optionsEn: [
+      'Chylomicrons < VLDL < LDL < HDL',
+      'HDL < LDL < VLDL < Chylomicrons',
+      'LDL < HDL < VLDL < Chylomicrons',
+      'VLDL < Chylomicrons < HDL < LDL'
+    ],
+    correctIndex: 0,
+    explanationAr: 'تتناسب الكثافة طردياً مع محتوى البروتين وعكسياً مع محتوى الدهون. الكيلوميكرونات تحوي 90% دهون ثلاثية و 2% بروتين فقط (أقلها كثافة)، تليها VLDL (10% بروتين)، ثم LDL (22% بروتين)، وأعلاها كثافة هي HDL (50% بروتين).',
+    explanationEn: 'Separation by density: Chylomicrons (lowest) < VLDL < LDL < HDL (highest, contains 50% protein).',
+    whyCorrectAr: 'كلما زادت نسبة البروتين في الجسيم الدهني زادت كثافته، والعكس صحيح بالنسبة لمحتوى الدهون الثلاثية.',
+    commonMistakeAr: 'الخلط بين الترتيب حسب الكثافة والترتيب بالهجرة الكهربائية (Electrophoresis) حيث تهاجر ألفا-HDL أسرع نحو المصعد.',
+    clinicalPearlAr: 'في الهجرة الكهربائية (Electrophoresis): يبقى الكيلوميكرون عند نقطة البداية (Origin)، ويليه Beta (LDL)، ثم Pre-Beta (VLDL)، ثم Alpha (HDL).',
+    referencePdf: 'Plasma Lipids and Plasma Lipoproteins',
+    pageNumber: 140,
+  },
+  {
+    id: 'lipo_2',
+    categoryId: 'lipoproteins_atherosclerosis',
+    categoryTitleAr: 'البروتينات الدهنية وتصلب الشرايين',
+    categoryTitleEn: 'Lipoproteins & Atherosclerosis',
+    difficulty: 'hard',
+    questionAr: 'ما هو البروتين الشحمي الذي ينشط إنزيم Lipoprotein Lipase (LPL) لتفكيك دهون الكيلوميكرونات و VLDL؟',
+    questionEn: 'Which apolipoprotein acts as the physiological activator of lipoprotein lipase (LPL)?',
+    optionsAr: [
+      'Apo C-II',
+      'Apo B-100',
+      'Apo A-1',
+      'Apo E'
+    ],
+    optionsEn: [
+      'Apo C-II',
+      'Apo B-100',
+      'Apo A-1',
+      'Apo E'
+    ],
+    correctIndex: 0,
+    explanationAr: 'البروتين الشحمي Apo C-II (المحمول على الكيلوميكرونات و VLDL والمأخوذ من HDL) هو المنشط الحيوي الضروري لإنزيم Lipoprotein Lipase الموجود على السطح الداخلي للشعيرات الدموية، وبدونه لا يتم هضم الدهون الثلاثية وإفراغها للأنسجة.',
+    explanationEn: 'Apo C-II is the mandatory cofactor and activator of lipoprotein lipase in capillary endothelial cells.',
+    whyCorrectAr: 'Apo C-II هو المفتاح الكيميائي الذي يفتح عمل إنزيم LPL في جدار الشعيرات بالأنسجة العضلية والدهنية.',
+    commonMistakeAr: 'الخلط بين Apo C-II ومنشط إنزيم LCAT وهو Apo A-1، أو مستقبل الكبد Apo E.',
+    clinicalPearlAr: 'نقص وراثي في Apo C-II أو إنزيم Lipoprotein Lipase يسبب مرض فرط شحميات الدم الوراثي من النوع الأول (Type I Hyperlipoproteinemia / Familial Chylomicronemia).',
+    referencePdf: 'Plasma Lipids and Plasma Lipoproteins',
+    pageNumber: 142,
+  },
+  {
+    id: 'lipo_3',
+    categoryId: 'lipoproteins_atherosclerosis',
+    categoryTitleAr: 'البروتينات الدهنية وتصلب الشرايين',
+    categoryTitleEn: 'Lipoproteins & Atherosclerosis',
+    difficulty: 'medium',
+    questionAr: 'كيف تتشكل خلايا الرغوة (Foam cells) التي تبدأ عملية تصلب الشرايين (Atherosclerosis)؟',
+    questionEn: 'How are foam cells formed during the pathogenesis of atherosclerosis?',
+    optionsAr: [
+      'تلتهم البلاعم (Macrophages) كميات هائلة من جزيئات LDL المؤكسدة عبر مستقبلات Scavenger غير المنظمة',
+      'تتراكم جزيئات HDL الزائدة داخل خلايا بطانة الشرايين',
+      'تترسب بلورات الكالسيوم فقط دون أي دهون داخل جدار الشريان',
+      'تلتهم كريات الدم الحمراء دهون الكيلوميكرونات'
+    ],
+    optionsEn: [
+      'Macrophages uptake excess oxidized LDL via non-downregulated scavenger receptors',
+      'Excess HDL particles accumulate in arterial endothelial cells',
+      'Calcium crystals precipitate without any lipids',
+      'Red blood cells engulf chylomicron droplets'
+    ],
+    correctIndex: 0,
+    explanationAr: 'عندما يتأكسد LDL بواسطة الجذور الحرة إلى (Oxidized LDL)، لا تتعرف عليه مستقبلات LDL الطبيعية، بل تبتلعه الخلايا البلعمية (Macrophages) بنهم ودون توقف عبر مستقبلات Scavenger Receptors التي لا تخضع لآلية التثبيط الذاتي، فتنتفخ بالدهون وتتحول إلى خلايا رغوية (Foam Cells) تشكل الصفيحة التصلبية.',
+    explanationEn: 'Macrophages consume excess modified (oxidized) LDL via scavenger receptors, transforming into lipid-laden foam cells.',
+    whyCorrectAr: 'مستقبلات Scavenger Receptors لا تغلق عند امتلاء الخلية بالكوليسترول عكس مستقبلات LDL العادية، مما يؤدي إلى تراكم مفرط.',
+    commonMistakeAr: 'الاعتقاد بأن خلايا الرغوة تنتج عن تراكم HDL؛ إن HDL بروتين وقائي مضاد للأكسدة يسحب الكوليسترول.',
+    clinicalPearlAr: 'مضادات الأكسدة مثل فيتامين E وفيتامين C والكاروتين تحمي الشرايين عبر منع أكسدة جزيئات LDL إلى oxidized LDL.',
+    referencePdf: 'Plasma Lipids and Plasma Lipoproteins',
+    pageNumber: 152,
+  },
+  {
+    id: 'lipo_4',
+    categoryId: 'lipoproteins_atherosclerosis',
+    categoryTitleAr: 'البروتينات الدهنية وتصلب الشرايين',
+    categoryTitleEn: 'Lipoproteins & Atherosclerosis',
+    difficulty: 'hard',
+    questionAr: 'ما هو الخلل الوراثي في مرض طنجة (Tangier disease) وما هي العلامة المميزة له؟',
+    questionEn: 'What is the defect in Tangier disease and what is its hallmark feature?',
+    optionsAr: [
+      'نقص شديد في HDL مع تراكم الكوليسترول في الأنسجة وتضخم اللوزتين بلون برتقالي',
+      'غياب كامل لـ LDL و VLDL في الدم',
+      'ارتفاع هائل في الكيلوميكرونات بعد الأكل فقط',
+      'فشل كامل في تصنيع الكوليسترول في الكبد'
+    ],
+    optionsEn: [
+      'Severe deficiency of HDL with cholesterol accumulation in tissues and orange tonsils',
+      'Total absence of LDL and VLDL in blood',
+      'Massive chylomicron elevation after meals only',
+      'Complete failure of cholesterol synthesis in liver'
+    ],
+    correctIndex: 0,
+    explanationAr: 'مرض طنجة (Tangier disease) ينشأ عن نقص حاد في HDL بسبب خلل في بروتين النقل ABCA1 / LCAT، مما يؤدي لانخفاض شبه تام في كوليسترول HDL في البلازما وتراكم استرات الكوليسترول في الأنسجة اللمفاوية مسبباً تضخم اللوزتين بلون أصفر برتقالي مميز وتضخم الطحال.',
+    explanationEn: 'Tangier disease is characterized by low concentration of HDL with accumulation of cholesterol in tissues.',
+    whyCorrectAr: 'فشل تصدير الكوليسترول الحر إلى HDL الوليد يؤدي لتحلله وتراكم الدهون داخل الخلايا الشبكية البطانية.',
+    commonMistakeAr: 'الخلط بين مرض طنجة ومرض فقد البروتين الشحمي بيتا (Abetalipoproteinemia) الذي يتميز بغياب Apo B-48 و Apo B-100.',
+    clinicalPearlAr: 'في Abetalipoproteinemia، لا يظهر شريط Beta بالهجرة الكهربائية، وتنعدم الكيلوميكرونات و VLDL و LDL في البلازما وتظهر خلايا دم شائكة (Acanthocytosis).',
+    referencePdf: 'Plasma Lipids and Plasma Lipoproteins',
+    pageNumber: 151,
+  },
+
+  // --- EICOSANOIDS, PHOSPHOLIPIDS & LIPIDOSIS ---
+  {
+    id: 'eico_1',
+    categoryId: 'eicosanoids_phospholipids',
+    categoryTitleAr: 'الإيكوسانويدات والدهون الفوسفاتية والليبيدوسيز',
+    categoryTitleEn: 'Eicosanoids, Phospholipids & Lipidosis',
+    difficulty: 'medium',
+    questionAr: 'كيف يثبط دواء الأسبرين (Aspirin) ومضادات الالتهاب غير الستيرويدية تصنيع البروستانويدات؟',
+    questionEn: 'How do aspirin and NSAIDs inhibit the synthesis of prostanoids?',
+    optionsAr: [
+      'عبر تثبيط إنزيم السيكلوأوكسيجينيز (Cyclooxygenase / COX)',
+      'عبر تثبيط إنزيم 5-Lipoxygenase',
+      'عبر تثبيط إنزيم الفوسفوليباز A2',
+      'عبر شطر حمض الأراكيدونيك مباشرة'
+    ],
+    optionsEn: [
+      'By inhibiting cyclooxygenase (COX) enzyme',
+      'By inhibiting 5-lipoxygenase enzyme',
+      'By inhibiting phospholipase A2',
+      'By cleaving arachidonic acid directly'
+    ],
+    correctIndex: 0,
+    explanationAr: 'تثبط الأدوية المضادة للالتهاب مثل الأسبرين والإندوميثاسين إنزيم السيكلوأوكسيجينيز (Fatty acid cyclo-oxygenase - COX) الذي يحول حمض الأراكيدونيك إلى PGG2 و PGH2، ولا تؤثر هذه الأدوية على مسار تصنيع الليكوترينات.',
+    explanationEn: 'Aspirin, indomethacin and phenylbutazone inhibit cyclooxygenase. They do not affect the synthesis of leukotrienes.',
+    whyCorrectAr: 'الأسبرين يستهدف إنزيم COX تحديداً (بأسترة بقايا السيرين فيه)، مانعاً تكون البروستاغلاندينات والثرومبوكسان.',
+    commonMistakeAr: 'الاعتقاد بأن الأسبرين يثبط الفوسفوليباز A2؛ الكورتيزول (Cortisol) هو الذي يثبط Phospholipase A2، بينما الأسبرين يثبط COX.',
+    clinicalPearlAr: 'يثبط الأسبرين بجرعة منخفضة (75-100 مجم) إنزيم COX-1 في الصفائح الدموية بشكل دائم لا رجعة فيه، مانعاً تصنيع Thromboxane A2 المخثر طوال دورة حياة الصفيحة (7-10 أيام).',
+    referencePdf: 'Eicosanoids & Conjugated Lipids & Ketone Bodies',
+    pageNumber: 121,
+  },
+  {
+    id: 'eico_2',
+    categoryId: 'eicosanoids_phospholipids',
+    categoryTitleAr: 'الإيكوسانويدات والدهون الفوسفاتية والليبيدوسيز',
+    categoryTitleEn: 'Eicosanoids, Phospholipids & Lipidosis',
+    difficulty: 'hard',
+    questionAr: 'ما هو الخلل الإنزيمي في مرض نيمان-بيك (Niemann-Pick disease)، وما المادة المتراكمة فيه؟',
+    questionEn: 'What is the enzymatic deficiency and accumulating metabolite in Niemann-Pick disease?',
+    optionsAr: [
+      'نقص إنزيم سفينغومايلينيز (Sphingomyelinase) وتراكم مادة السفينغومايلين في الكبد والطحال',
+      'نقص إنزيم جلوكوسيريبروزيديز وتراكم الجلوكوسيريبروزيد',
+      'نقص إنزيم هيكسوزأمينيداز وتراكم الغانغليوزيد GM2',
+      'نقص إنزيم كبريتاتاز وتراكم السلفاتيد'
+    ],
+    optionsEn: [
+      'Deficiency of sphingomyelinase, accumulating sphingomyelin in liver and spleen',
+      'Deficiency of glucocerebrosidase, accumulating glucocerebroside',
+      'Deficiency of hexosaminidase, accumulating ganglioside GM2',
+      'Deficiency of sulfatase, accumulating sulfatides'
+    ],
+    correctIndex: 0,
+    explanationAr: 'مرض نيمان-بيك (Niemann-Pick disease) هو اضطراب وراثي ناتج عن نقص إنزيم السفينغومايلينيز الليزوزومي (Sphingomyelinase)، مما يؤدي لتراكم مادة السفينغومايلين في الأنسجة وظهور تضخم ملحوظ في الكبد والطحال وتدهور عصبي مبكر.',
+    explanationEn: 'Niemann-Pick disease is caused by deficiency of lysosomal sphingomyelinase, leading to sphingomyelin accumulation and hepatosplenomegaly.',
+    whyCorrectAr: 'هو اضطراب تخزين شحمي سفينغوليبي في الليزوزومات.',
+    commonMistakeAr: 'الخلط بين نيمان-بيك ومرض غوشيه (Gaucher) الذي ينتج عن نقص Glucocerebrosidase، أو تاي-ساكس (Tay-Sachs) الناتج عن نقص Hexosaminidase.',
+    clinicalPearlAr: 'في فحص قاع العين لدى الأطفال المصابين بمرض نيمان-بيك أو تاي-ساكس، تظهر علامة الكرزة الحمراء على البقعة الشبكية (Cherry-red spot on macula).',
+    referencePdf: 'Eicosanoids & Conjugated Lipids & Ketone Bodies',
+    pageNumber: 126,
+  },
+  {
+    id: 'eico_3',
+    categoryId: 'eicosanoids_phospholipids',
+    categoryTitleAr: 'الإيكوسانويدات والدهون الفوسفاتية والليبيدوسيز',
+    categoryTitleEn: 'Eicosanoids, Phospholipids & Lipidosis',
+    difficulty: 'easy',
+    questionAr: 'ما هو الدور الفسيولوجي لمركب Dipalmitoyl lecithin (السيرفاكتانت) في الرئتين؟',
+    questionEn: 'What is the physiological function of dipalmitoyl lecithin (surfactant) in the lungs?',
+    optionsAr: [
+      'يعمل كعامل تخفيض للتوتر السطحي يمنع التصاق وانخماص الحويصلات الهوائية أثناء الزفير',
+      'يقوم بأكسدة الغازات التنفسية لإنتاج الطاقة',
+      'ينقل الكوليسترول من الشعب الهوائية إلى الأمعاء',
+      'ينشط إنزيم الليباز اللعابي في القصبة الهوائية'
+    ],
+    optionsEn: [
+      'Acts as a surfactant that lowers surface tension and prevents alveolar collapse',
+      'Oxidizes respiratory gases to generate ATP',
+      'Transports cholesterol from bronchioles to intestine',
+      'Activates lingual lipase in the trachea'
+    ],
+    correctIndex: 0,
+    explanationAr: 'مركب ديبالميتويل ليسيثين (Dipalmitoyl lecithin) هو المكون الأساسي لمادة السيرفاكتانت الرئوية (Lung Surfactant) التي تقلل التوتر السطحي في الحويصلات وتمنع انخماصها. نقصه عند الأطفال الخدج يسبب متلازمة الضائقة التنفسية (Respiratory Distress Syndrome - RDS).',
+    explanationEn: 'Dipalmityl lecithin acts as surfactant in the lungs. It prevents adherence of alveolar wall. Its deficiency leads to respiratory distress syndrome in premature babies.',
+    whyCorrectAr: 'هو فوسفوليبيد خافض للتوتر السطحي ضروري لإبقاء الرئتين مفتوحتين.',
+    commonMistakeAr: 'الاعتقاد بأنه إنزيم هاضم؛ هو فوسفوليبيد بنيوي وظيفي سطحي.',
+    clinicalPearlAr: 'يمكن تسريع نضج رئة الجنين المهدد بالولادة المبكرة بإعطاء الأم حقن الكورتيكوستيرويدات (مثل Dexamethasone) لتحفيز تصنيع السيرفاكتانت.',
+    referencePdf: 'Eicosanoids & Conjugated Lipids & Ketone Bodies',
+    pageNumber: 127,
+  },
+  {
+    id: 'eico_4',
+    categoryId: 'eicosanoids_phospholipids',
+    categoryTitleAr: 'الإيكوسانويدات والدهون الفوسفاتية والليبيدوسيز',
+    categoryTitleEn: 'Eicosanoids, Phospholipids & Lipidosis',
+    difficulty: 'medium',
+    questionAr: 'ما هو الفرق الفسيولوجي المباشر بين Thromboxane A2 و Prostacyclin (PGI2) على الأوعية والصفائح؟',
+    questionEn: 'What is the opposing physiological action between Thromboxane A2 and Prostacyclin (PGI2)?',
+    optionsAr: [
+      'الثرومبوكسان يضيق الأوعية ويحفز تجمع الصفائح، بينما البروستاكلسين يوسع الأوعية ويثبط تجمع الصفائح',
+      'الثرومبوكسان يوسع الأوعية بينما البروستاكلين يسبب الجلطات',
+      'كلاهما يحفز النزيف وتثبيط الصفائح الدموية بنفس الدرجة',
+      'البروستاكلين يعمل فقط على عضلات الرحم والثرومبوكسان في الرئة فقط'
+    ],
+    optionsEn: [
+      'Thromboxane vasoconstricts and promotes aggregation; Prostacyclin vasodilates and inhibits aggregation',
+      'Thromboxane vasodilates and prostacyclin causes clotting',
+      'Both inhibit platelets and cause bleeding identically',
+      'Prostacyclin acts on uterus only and thromboxane on lungs only'
+    ],
+    correctIndex: 0,
+    explanationAr: 'يفرز Thromboxane A2 بواسطة الصفائح الدموية ليسبب تضيق الأوعية (Vasoconstriction) وتحفيز تجمع الصفائح لتشكيل الجلطة. في المقابل، يفرز Prostacyclin (PGI2) بواسطة بطانة الأوعية السليمة ليحدث توسع الأوعية (Vasodilation) وتثبيط تجمع الصفائح لمنع انتشار التخثر.',
+    explanationEn: 'TXA2 (platelets): promotes aggregation & vasoconstriction. PGI2 (vascular endothelium): inhibits aggregation & vasodilates.',
+    whyCorrectAr: 'التوازن الدقيق بين TXA2 و PGI2 هو الضامن لسيولة الدم الطبيعية وتوقف النزيف عند الجروح.',
+    commonMistakeAr: 'الخلط بين خلايا المنشأ: Thromboxane من الصفائح، و Prostacyclin من بطانة الأوعية (Endothelium).',
+    clinicalPearlAr: 'في حالات أمراض الشرايين التاجية، يرجح التوازن لصالح Thromboxane A2 مما يزيد خطر التخثر والجلطة القلبية.',
+    referencePdf: 'Eicosanoids & Conjugated Lipids & Ketone Bodies',
+    pageNumber: 122,
+  }
+];

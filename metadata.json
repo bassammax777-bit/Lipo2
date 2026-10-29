@@ -1,0 +1,6 @@
+{
+  "name": "منصة اختبارات كيمياء الدهون الطبية | Lipid Biochem Exam Pro",
+  "description": "منصة امتحانات تفاعلية شاملة في كيمياء أيض الدهون مع تصحيح وتغذية راجعة فورية وشروحات تفصيلية وتتبع مستمر للتقدم ومكافآت تحفيزية",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
