@@ -53,13 +53,22 @@ export const Dashboard: React.FC<DashboardProps> = ({
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 via-emerald-950/40 to-slate-900 border border-emerald-500/30 p-6 sm:p-8 shadow-2xl">
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-bold">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-              <span>
-                {lang === 'ar'
-                  ? 'منهج كيمياء الدهون الطبية - د. سعيد عرابي'
-                  : 'Medical Biochemistry - Lipid Metabolism'}
-              </span>
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-bold">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+                <span>
+                  {lang === 'ar'
+                    ? 'منهج كيمياء الدهون الطبية - د. سعيد عرابي'
+                    : 'Medical Biochemistry - Lipid Metabolism'}
+                </span>
+              </div>
+
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold font-mono">
+                <span>{QUESTIONS_BANK.length}</span>
+                <span className="font-sans font-normal">
+                  {lang === 'ar' ? 'سؤالاً طبياً شاملاً' : 'Curated Questions'}
+                </span>
+              </div>
             </div>
 
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight">
@@ -82,9 +91,10 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
             <p className="text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed">
               {lang === 'ar'
-                ? 'امتحانات تفاعلية فورية تشمل أسئلة دقيقة، وتغذية راجعة فورية بعد كل خيار، وشروحات طبية وسريرية مفصلة مع تتبع تقدمك وتراكم النقاط والأوسمة.'
-                : 'Interactive exams with instant corrections, detailed rationales, clinical pearls, and continuous progress tracking.'}
+                ? `امتحانات تفاعلية فورية تشمل ${QUESTIONS_BANK.length} سؤالاً دقيقاً مستخرجاً من محاضرات د. سعيد عرابي، مع ترتيب عشوائي دوري للخيارات، وتغذية راجعة فورية عند كل إجابة، وتفسير طبي وسريري لكل خيار مع تتبع مستمر للتقدم ومكافآت تحفيزية.`
+                : `Interactive exams featuring ${QUESTIONS_BANK.length} curated questions from Prof. Said Oraby's lecture notes, with dynamic option shuffling, instant corrections, detailed rationales, clinical pearls, and continuous progress tracking.`}
             </p>
+
 
             {/* Level and XP Progress Bar */}
             <div className="pt-2 max-w-md space-y-1.5">

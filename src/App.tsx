@@ -10,6 +10,7 @@ import {
   calculateXpGain,
   checkNewUnlockedBadges,
   BADGES_LIST,
+  shuffleQuestionOptions,
 } from './utils/quizLogic';
 import {
   loadUserStats,
@@ -108,8 +109,12 @@ export default function App() {
       pool = [...QUESTIONS_BANK];
     }
 
-    // Shuffle in timed or speed mode
-    if (mode === 'timed' || mode === 'speed') {
+    // Dynamically shuffle options for every single question so that
+    // the correct answer varies across (أ، ب، ج، د / A, B, C, D) on every run
+    pool = pool.map(shuffleQuestionOptions);
+
+    // Shuffle question sequence in timed, speed, or comprehensive exams
+    if (mode === 'timed' || mode === 'speed' || catId === 'all') {
       pool = [...pool].sort(() => Math.random() - 0.5);
     }
 

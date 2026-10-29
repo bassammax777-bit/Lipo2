@@ -51,6 +51,40 @@ export function calculateNetAtpForFattyAcid(carbons: number): AtpYieldBreakdown 
 }
 
 /**
+ * Randomly shuffles options for a question while updating correctIndex
+ * so that the correct answer is dynamically randomized across all 4 positions (A, B, C, D)
+ */
+export function shuffleQuestionOptions(question: Question): Question {
+  const originalOptionsAr = [...question.optionsAr];
+  const originalOptionsEn = [...question.optionsEn];
+  const originalCorrectIndex = question.correctIndex;
+
+  // Track original index with each option
+  const paired = originalOptionsAr.map((ar, i) => ({
+    ar,
+    en: originalOptionsEn[i] ?? '',
+    isCorrect: i === originalCorrectIndex,
+  }));
+
+  // Fisher-Yates shuffle
+  for (let i = paired.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = paired[i];
+    paired[i] = paired[j];
+    paired[j] = temp;
+  }
+
+  const newCorrectIndex = paired.findIndex((p) => p.isCorrect);
+
+  return {
+    ...question,
+    optionsAr: paired.map((p) => p.ar),
+    optionsEn: paired.map((p) => p.en),
+    correctIndex: newCorrectIndex >= 0 ? newCorrectIndex : 0,
+  };
+}
+
+/**
  * Calculates XP earned for an answer
  */
 export function calculateXpGain(
